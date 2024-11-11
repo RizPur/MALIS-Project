@@ -12,7 +12,7 @@ The initial data set `iris.csv` contained data on 3 flowers but we have reformat
 
 In our main.py, the first thing we did was create a function to show us a scatterplot of the data. Here we could see the data could be seperated by a higher dimensional plane for all 4 input data sets put against each other.
 
-![Pairplot](/MALIS/Project1/plots/binary/pairplot.png)
+![Pairplot](/plots/binary/pairplot.png)
 
 #### Structure of the Scatterplot
 
