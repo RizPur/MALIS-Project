@@ -8,7 +8,7 @@ We want to design a model that will predict between a Setosa and a Versicolor us
 
 The initial data set `iris.csv` contained data on 3 flowers but we have reformatted it to have just the first 2 flowers for this task and renamed it `iris_binary.csv`
 
-#### ScatterPlot
+### ScatterPlot
 
 In our main.py, the first thing we did was create a function to show us a scatterplot of the data. Here we could see the data could be seperated by a higher dimensional plane for all 4 input data sets put against each other.
 
@@ -32,3 +32,6 @@ For a dataset with 4 features (e.g., `sepal.length`, `sepal.width`, `petal.lengt
   - For instance, the diagonal cell for `sepal.length` shows a histogram of `sepal.length` values across all samples.
 
 This layout provides a **comprehensive overview** of all pairwise relationships in the dataset, allowing for easy pattern recognition and class distinction when used with a `hue` parameter.
+
+## Task 2 - Multi Variable Classifier 
+
