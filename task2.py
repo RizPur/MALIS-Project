@@ -6,6 +6,8 @@ from pandas.plotting import scatter_matrix
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import accuracy_score, confusion_matrix, classification_report
 
+# to be redone
+
 def binary_classifier_plots(file='iris_binary.csv'):
     data = pd.read_csv(file, sep=',')
     print(data.head())  # Display first few rows

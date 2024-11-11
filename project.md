@@ -31,7 +31,9 @@ For a dataset with 4 features (e.g., `sepal.length`, `sepal.width`, `petal.lengt
 - **Diagonal cells** (histograms or KDE plots): Show the distribution of individual features.
   - For instance, the diagonal cell for `sepal.length` shows a histogram of `sepal.length` values across all samples.
 
-This layout provides a **comprehensive overview** of all pairwise relationships in the dataset, allowing for easy pattern recognition and class distinction when used with a `hue` parameter.
+This layout provides a **comprehensive overview** of all pairwise relationships in the dataset, here we can see that `petal.length` is enough to differentiate between the 2 iris flowers. So we decided to use just this feature to create a regression model.
+
+
 
 ## Task 2 - Multi Variable Classifier 
 
