@@ -4,9 +4,9 @@ Written by: Qizhi Pan and Joel Brown
 Date: November 4, 2024
 ## 1. Introduction
 ### 1.1 Overview
-In this project, we choose
+In this project, we completed a binary classification task using linear regression based on iris dataset and further, completed a multivariable classification task. The accuracy for task 1 can be 100%, and for task 2 can be 96%. 
 ### 1.2 ChatGPT Usage
-balabalab
+We used ChatGPT to accelarate our coding, complete and revise our code. We originally proposed the idea for the multivariable classification solution, and use ChatGPT to 
 ## 2. Dataset Description and Analysis
 ### 2.1
 ### 2.2
