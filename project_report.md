@@ -136,7 +136,7 @@ $$W_B = [w_{B1},w_{B2}],X = [x_1,x_2]​$$
 
 #### 3.2.3 Training, Testing and Results
 The training procedure in task 2 is quite similar to task 1. The slight changes are:
-1. In the data preprocessing, to train model A, we set all target `Setosa` to value `1`, rest to `0`. While trainig model B, we set all target `Versicolor` to value `1`, rest to `0`.
+1. In the data preprocessing, to train model A, we set all target `Setosa` to value `1`, the rest to `0`. While trainig model B, we set all target `Versicolor` to value `1`, the rest to `0`.
 2. The expression of gradient decends are different in forms.
 3. The regression model we get here is a plane, not a line as in task 1.
    
