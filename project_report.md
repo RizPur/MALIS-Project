@@ -160,6 +160,8 @@ Classification result:
 Total samples: 150
 Number of misclassifications: 6
 Accuracy: 96.00%
+
+In general, the accuracy for the method proposed in task 2 can be around 90%.
 ## 4. Discussion
 ### 4.1 About Models
 #### 4.1.1 More features?
