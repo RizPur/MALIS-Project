@@ -161,15 +161,19 @@ Total samples: 150
 Number of misclassifications: 6
 Accuracy: 96.00%
 ## 4. Discussion
-###  Problem Definition 
-We want to design a model that will predict between a Setosa and a Versicolor using data on their petals' and stalks' length and width. 
+### 4.1 About Models
+#### 4.1.1 More features?
+In task 1, we only use 1 feature and in task 2, we only use 2 features. Theoretically, we could use 4 features together to train the model in one time and still get ideal result. But just as discussed in 3.2.3, the trained model can be more unstable and requires some well-designed use of valid set.
+#### 4.1.2 Other Forms of Model?
+In this report, we use $y = WX+b$ model till the end. Actually, in the first trail in task 2, we tried to use $z = a·(x+y)^2 + b·(x+y) + c$ to do the linear regression, cause we try to handle the scenario when `Versicolor` set to 1 in the middle and the rest to 0. It turns out that this kind of model can be super correct when it's well trained, but it's also very hard to train it right.
 
-The initial data set `iris.csv` contained data on 3 flowers but we have reformatted it to have just the first 2 flowers for this task and renamed it `iris_binary.csv`
+Here we knows "esay to train" is also a very good trait for a model.
+### 4.2 About Pros and Cons
+#### 4.2.1 Pros
+1. It's simple to implement
+2. The computation cost is low
 
-### ScatterPlot
-
-
-
-
-## Task 2 - Multi Variable Classifier 
-
+#### 4.2.2 Cons
+1. Linear regression is not inherently designed for classification tasks, leading to suboptimal decision boundaries(like what we observed in 2.2)
+2. When the data distributions show non-linear properties, it will be hard to implement
+3. For more categories to be classified, it needs more tricks and may results in limited performance.
