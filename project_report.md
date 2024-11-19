@@ -69,9 +69,7 @@ We define `w` and `b` as 0 initially, and for each epoch, the model calculates t
 The model trains itself over 300 epochs, optimizing `w` and  `b` to decrease the loss. After which, the new trained parameters are used and the 0.5 threshold is applied to correctly classify between *Setosa (0)* and *Versicolor (1)*
 
 
-### Visualizing the Results
-
-#### Linear Regression Model
+### 3.1.1 Linear Regression Model
 
 The plot shows how the predicted class labels depend on petal.length
 
@@ -80,7 +78,7 @@ The plot shows how the predicted class labels depend on petal.length
 
 ![Linear Regression](plots/binary/linear_regression_model.png)
 
-#### Loss Function
+### 3.1.2 Loss Function
 
 The loss function seemed to smooth out at a local minimum, indicating the model is performing well over the epochs.
 
@@ -88,7 +86,7 @@ The loss function seemed to smooth out at a local minimum, indicating the model 
 
 
 
-### Evaluating the Model
+### 3.1.3 Evaluating the Model
 
 To evaluate the model’s performance, we used the following metrics:
 
@@ -104,15 +102,9 @@ $$
 \end{pmatrix}
 $$
 Provided a summary of 50 true positives, 0 false positives, 50 true negatives, and 0 false negatives.
+demonstrating a perfect balance between precision and recall
 
-- Classification Report:
-      Includes precision, recall, and F1-score for each class, giving a comprehensive view of the model’s performance.
-
-  - **Precision**: 1.00 for both classes (0 and 1), indicating no false positives.
-  - **Recall**: 1.00 for both classes, meaning no false negatives.
-  - **F1-Score**: 1.00, demonstrating a perfect balance between precision and recall.
-
-### **Conclusion**
+### 3.1.4 **Conclusion**
 The model performed perfectly on the test dataset, achieving 100% accuracy across all evaluation metrics. While this is an excellent result, it is worth noting that such perfect performance might be **specific to this dataset** and **may not generalize to new or unseen data**. 
 
 
@@ -121,13 +113,13 @@ In this task, we only used one feature `petal.length` out of the 4 available fea
 In the next task, we will explore multi-variable classification, where the dimensions of the dataset will have to increase as we incorporate additional features. 
 ### 3.2 Task 2 - Ternary Classifier  
 #### 3.2.1 Solution
-We can still use the previous binary classification to solve the ternary classification task. In this case, two binary classifiers are need. As discussed in 2.2, we need to train new models using  `petal.length` and `petal.width`.
+We can still use the previous binary classification to solve the ternary classification task. In this case, two binary classifiers are needed. As discussed in 2.2, we need to train new models using  `petal.length` and `petal.width`.
 
 Here's the solution:
 
-1. We train two models. Let's say A and B. A tells `Setosa` from the rest. B tells `Virginica` from the rest.
+1. We train two models. Let's say A and B. A tells `Setosa` from the `Virgincia` and `Versicolor` and B tells `Virginica` from the rest.
 2. When we classify one sample, we put it into both A and B and get their predict values $y_{A_{pre}}$, $y_{B_{pre}}$.
-3. If $y_{A_{pre}} > y_{B_{pre}}$ and $y_{A_{pre}}>$ a threshold, then we classify this sample to `Setosa`. If $y_{B_{pre}} > y_{A_{pre}}$ and $y_{B_{pre}}>$ a threshold, then we classify this sample to `Virginaca`. If $y_{A_{pre}}$, $y_{B_{pre}}$ both less than the threshold, we classify this sample to `Versicolor`. In our practice, we set the threshold to be 0.75.
+3. If $y_{A_{pre}} > y_{B_{pre}}$ and $y_{A_{pre}}>$ a threshold, then we classifed this sample to `Setosa`. If $y_{B_{pre}} > y_{A_{pre}}$ and $y_{B_{pre}}>$ a threshold, then we classified this sample to `Virginaca`. If $y_{A_{pre}}$ and $y_{B_{pre}}$ are both less than the threshold, we classified this sample to `Versicolor`. In our practice, we set the threshold to be 0.75.
 #### 3.2.2 Models
 Model A:
 $$y_{A_{pre}}=W_A^T X + b_A$$
@@ -137,28 +129,33 @@ $$y_{B_{pre}}=W_B^T X + b_B$$
 $$W_B = [w_{B1},w_{B2}],X = [x_1,x_2]​$$
 
 #### 3.2.3 Training, Testing and Results
-The training procedure in Task 2 is quite similar to Task 1. The slight changes are:
+The training procedure in Task 2 was quite similar to Task 1. The slight changes were:
 1. In the data preprocessing, to train model A, we set all target `Setosa` to value `1`, the rest to `0`. While trainig model B, we set all target `Versicolor` to value `1`, the rest to `0`.
-2. The expression of gradient decends are different in forms.
-3. The regression model we get here is a plane, not a line as in Task 1.
+2. The expression of gradient decents were different.
+3. The regression model we got here is a plane, not a line as seen in Task 1.
    
-One important change that we do here is we start to use the valid set to reject the trained model. In Task 1, the model is too simple, we're able to get a good model without using the valid set. But in the practice in doing Task 2, we have  to use the valid set to make sure that we get a good model.
+One important change that we did here is we started to use the valid set to reject the trained model. In Task 1, the model was too simple, we're able to get a good model without using the valid set. But in the practice, while doing Task 2, we have to use the valid set to make sure that we get a good model.
 
-One result in a successful training is like:
+One result in a successful training can be seen below:
+
 Model A:
 $$[w_{A1},w_{A2}]= [-0.2971,-0.0644], b_A = 1.5450$$
+
 ![A1](plots/modelA1.png)![A2](plots/modelA2.png)
+
 Model B:
 $$[w_{B1},w_{B2}]= [0.0265,  0.5822], b_B = -0.4908$$
+
 ![B1](plots/modelB1.png)![B2](plots/modelB2.png)
 
-Then we use the whole iris dataset to do the classification based on 3.2.1.
+Then we used the whole iris dataset to do the classification based on 3.2.1.
 
 Predicted label:
 ![dr](plots/decisionrule.png)
 
 Classification result:
-![dr](plots/Classify.png)
+![dr](plots/classify.png)
+
 Total samples: 150
 Number of misclassifications: 6
 Accuracy: 96.00%
@@ -167,9 +164,11 @@ In general, the accuracy for the method proposed in Task 2 can be around 90%.
 ## 4. Discussion
 ### 4.1 Analysis of Model Performance 
 #### 4.1.1 More features?
-In Task 1, we only use 1 feature `petal.length` and in Task 2, we used 2 features `petal.length` and `petal.width`. Theoretically, we could use all 4 features together to train the model one time and still get ideal result but as discussed in 3.2.3, the trained model could be more unstable and would require a well-designed use of valid set. Simplicity proved effective, achieving perfect accuracy.
+
+In Task 1, we only used 1 feature `petal.length` and in Task 2, we used 2 features `petal.length` and `petal.width`. Theoretically, we could use all 4 features together to train the model and still get ideal results but as discussed in 3.2.3, the trained model could be more unstable and would require a well-designed use of a valid set. Simplicity proved effective, achieving perfect accuracy.
+
 #### 4.1.2 Alternative Model Forms
-In this report, we use $y = wX+b$ model till the end. Actually, in the first trail in Task 2, we tried to use $z = a·(x+y)^2 + b·(x+y) + c$ to do the linear regression, especially since `Versicolor` occupies a middle ground between the other two classes. It turns out that this kind of model can be very accurate when it's well-trained, but it's also very hard to train it right.
+In this report, we used the $y = wX+b$ model. In Task 2, we initially thought and attempted to use $z = a·(x+y)^2 + b·(x+y) + c$ to do the linear regression, especially since `Versicolor` occupies a middle ground between the other two classes. It turns out that this kind of model can be very accurate when it's well-trained, but it's also very hard to train it right.
 
 This highlighted the importance of model simplicity—not only does it make the training process more manageable, but it also contributes to better generalization in some cases.
 
@@ -189,16 +188,14 @@ Our findings suggest that while linear regression can be adapted for simple bina
 
 Therefore, improvements could include: 
 
-1. Alternative Models: More classification centered algorithms such as logistic regression or decision trees
+1. Alternative Models: More classification centered algorithms such as logistic regression or decision trees could be used to acertain a better accuracy in classification
 2. Feature Engineering: Investigating the impact of different feature combinations or engineered features to improve model performance
 
 ## 5. Conclusion
 
-In this project, we investigated the use of linear regression for classification tasks using the Iris dataset. 
+For the binary classification in Task 1, the model performed exceptionally well, achieving 100% accuracy by using the clear linear separation between Setosa and Versicolor based on `petal.length`. 
 
-For the binary classification in Task 1, the model performed exceptionally well, achieving 100% accuracy by using the clear linear separation between Setosa and Versicolor based on `petal.length`. This demonstrated that linear regression could be effectively applied to simple classification problems where the classes are easily separable along a single feature.
-
-However, in Task 2, when extending the approach to a ternary classification problem involving Setosa, Versicolor, and Virginica, the limitations of linear regression became evident. Despite achieving an accuracy of up to 96%, the model required additional complexity, such as training multiple binary classifiers and setting decision thresholds, to handle the multiclass scenario. 
+However, in Task 2, when extending the approach to aall features  `Setosa`, `Versicolor`, and `Virginica`, the limitations of linear regression became evident. Despite achieving an accuracy of up to 96%, the model required additional complexity, such as training multiple binary classifiers to handle the multiclass scenario. 
 
 The challenges in capturing non-linear relationships in this task, highlighted that linear regression is not ideally suited for such tasks.
 
