@@ -4,11 +4,11 @@ Written by: Qizhi Pan and Joel Brown
 Date: November 4, 2024
 ## 1. Introduction
 ### 1.1 Overview
-In this project, we completed a binary classification task using linear regression based on iris dataset and further, completed a ternary classification task. The accuracy for task 1 can be 100%, and for task 2 can be up to 96%. 
+In this project, we completed a binary classification task using linear regression based on iris dataset and further, completed a ternary classification task. The accuracy for Task 1 can be 100%, and for Task 2 can be up to 96%. 
 ### 1.2 ChatGPT Usage
 We used ChatGPT to accelarate our coding, complete and revise our code. We originally proposed a solution to the ternary classification problem and implemented it using ChatGPT.
 ### 1.3 Contribution
-Joel does the coding and writing for the task 1. Qizhi does the coding and writing for task 2 and discussion.
+Joel focused on the coding and project report for Task 1 while Qizhi focused on the coding and project report for Task 2.
 ## 2. Dataset Description and Analysis
 The Iris dataset consists of 150 samples, each representing a flower of one of three species: `Setosa`, `Versicolor`, and `Virginica`. The dataset contains 4 numerical features:`sepal.length`, `sepal.width`, `petal.length`, and `petal.width`, all of them are in centimeters.
 
@@ -17,7 +17,7 @@ The dataset is balanced, with 50 samples per class. Each sample is labeled with 
 To better handle the classification task with linear regression, we need to understand the data.
 
 ### 2.1 Plot 4 Features in 2 Categories
- Considering the binary classifier in **task 1**, here we list the scatterplots and histograms for 4 features in selected 2 categories:
+ Considering the binary classifier in **Task 1**, here we list the scatterplots and histograms for 4 features in selected 2 categories:
 
 ![Pairplot](/plots/binary/pairplot.png)
 
@@ -35,15 +35,15 @@ This layout provides a **comprehensive overview** of all pairwise relationships 
 
 For the categories we choose(`Setosa`, `Versicolor`), we can see that the distributions of `petal.length` or `petal.width` has distinct boundary between 2 categories and other features are more or less overlapped. 
 
-Theoreticlly, either the `petal.length` or `petal.width` itself should be enough to differentiate between these 2 categories. In **task 1**, we decided to only use `petal.length` to create a regression model.
+Theoreticlly, either the `petal.length` or `petal.width` itself should be enough to differentiate between these 2 categories. In **Task 1**, we decided to only use `petal.length` to create a regression model.
 
 
 ### 2.2 Plot 4 Features in 3 Categories
-Considering the ternary classifier in **task 2**, here we plot the 4 features in 3 categories with the same grid definition as above:
+Considering the ternary classifier in **Task 2**, here we plot the 4 features in 3 categories with the same grid definition as above:
 ![Pairplot](/plots/binary/pairplot_tri.png)
 In this new condition, choosing only one feature to set up the model is not a good idea, because every feature overlaps with each other to some extent. But the `petal.length` and `petal.width` together show a beautiful linear relationship with more feasible boundaries to distinguish each other.
 
-Thus, in task 2, we decide to use both `petal.length` and `petal.width` features to create our regression model.
+Thus, in Task 2, we decide to use both `petal.length` and `petal.width` features to create our regression model.
 ## 3. Experiments
 ### 3.1 Task 1 - Binary Classifier  
 In this project, we implemented a regression model in Python to classify flowers as either *Setosa (0)* or *Versicolor (1)* based on the feature `petal.length`. The model is based on the hypothesis stemming from our scatterplot, that a linear relationship of the form $y = wx + b$ exists, where:
@@ -137,12 +137,12 @@ $$y_{B_{pre}}=W_B^T X + b_B$$
 $$W_B = [w_{B1},w_{B2}],X = [x_1,x_2]​$$
 
 #### 3.2.3 Training, Testing and Results
-The training procedure in task 2 is quite similar to task 1. The slight changes are:
+The training procedure in Task 2 is quite similar to Task 1. The slight changes are:
 1. In the data preprocessing, to train model A, we set all target `Setosa` to value `1`, the rest to `0`. While trainig model B, we set all target `Versicolor` to value `1`, the rest to `0`.
 2. The expression of gradient decends are different in forms.
-3. The regression model we get here is a plane, not a line as in task 1.
+3. The regression model we get here is a plane, not a line as in Task 1.
    
-One important change that we do here is we start to use the valid set to reject the trained model. In task 1, the model is too simple, we're able to get a good model without using the valid set. But in the practice in doing task 2, we have  to use the valid set to make sure that we get a good model.
+One important change that we do here is we start to use the valid set to reject the trained model. In Task 1, the model is too simple, we're able to get a good model without using the valid set. But in the practice in doing Task 2, we have  to use the valid set to make sure that we get a good model.
 
 One result in a successful training is like:
 Model A:
@@ -163,21 +163,43 @@ Total samples: 150
 Number of misclassifications: 6
 Accuracy: 96.00%
 
-In general, the accuracy for the method proposed in task 2 can be around 90%.
+In general, the accuracy for the method proposed in Task 2 can be around 90%.
 ## 4. Discussion
-### 4.1 About Models
+### 4.1 Analysis of Model Performance 
 #### 4.1.1 More features?
-In task 1, we only use 1 feature and in task 2, we only use 2 features. Theoretically, we could use 4 features together to train the model in one time and still get ideal result. But just as discussed in 3.2.3, the trained model can be more unstable and requires some well-designed use of valid set.
-#### 4.1.2 Other Forms of Model?
-In this report, we use $y = WX+b$ model till the end. Actually, in the first trail in task 2, we tried to use $z = a·(x+y)^2 + b·(x+y) + c$ to do the linear regression, cause we try to handle the scenario when `Versicolor` set to 1 in the middle and the rest to 0. It turns out that this kind of model can be super correct when it's well trained, but it's also very hard to train it right.
+In Task 1, we only use 1 feature `petal.length` and in Task 2, we used 2 features `petal.length` and `petal.width`. Theoretically, we could use all 4 features together to train the model one time and still get ideal result but as discussed in 3.2.3, the trained model could be more unstable and would require a well-designed use of valid set. Simplicity proved effective, achieving perfect accuracy.
+#### 4.1.2 Alternative Model Forms
+In this report, we use $y = wX+b$ model till the end. Actually, in the first trail in Task 2, we tried to use $z = a·(x+y)^2 + b·(x+y) + c$ to do the linear regression, especially since `Versicolor` occupies a middle ground between the other two classes. It turns out that this kind of model can be very accurate when it's well-trained, but it's also very hard to train it right.
 
-Here we knows "esay to train" is also a very good trait for a model.
-### 4.2 About Pros and Cons
-#### 4.2.1 Pros
-1. It's simple to implement
-2. The computation cost is low
+This highlighted the importance of model simplicity—not only does it make the training process more manageable, but it also contributes to better generalization in some cases.
 
-#### 4.2.2 Cons
+### 4.2 Evaluation of Advantages and Disadvantages 
+#### 4.2.1 Advantages
+1. **Simplicity**: Linear Regression is straight forward to implement and understand
+2. **Low Computational Cost**: Training Linear Regression models is inexpensive  
+
+#### 4.2.2 Disadvantages
 1. Linear regression is not inherently designed for classification tasks, leading to suboptimal decision boundaries(like what we observed in 2.2)
 2. When the data distributions show non-linear properties, it will be hard to implement
 3. For more categories to be classified, it needs more tricks and may results in limited performance.
+
+### 4.3 General Notes for Improvement
+
+Our findings suggest that while linear regression can be adapted for simple binary classification tasks with noticeably linear separable classes, it is not the most effective method for more multiclass classification problems.
+
+Therefore, improvements could include: 
+
+1. Alternative Models: More classification centered algorithms such as logistic regression or decision trees
+2. Feature Engineering: Investigating the impact of different feature combinations or engineered features to improve model performance
+
+## 5. Conclusion
+
+In this project, we investigated the use of linear regression for classification tasks using the Iris dataset. 
+
+For the binary classification in Task 1, the model performed exceptionally well, achieving 100% accuracy by using the clear linear separation between Setosa and Versicolor based on `petal.length`. This demonstrated that linear regression could be effectively applied to simple classification problems where the classes are easily separable along a single feature.
+
+However, in Task 2, when extending the approach to a ternary classification problem involving Setosa, Versicolor, and Virginica, the limitations of linear regression became evident. Despite achieving an accuracy of up to 96%, the model required additional complexity, such as training multiple binary classifiers and setting decision thresholds, to handle the multiclass scenario. 
+
+The challenges in capturing non-linear relationships in this task, highlighted that linear regression is not ideally suited for such tasks.
+
+Overall, this project provided valuable insights into the capabilities and limitations of linear regression. It reinforced the importance of aligning the choice of algorithm with the specific requirements of the task and the characteristics of the dataset. By evaluating our approach and results, we gained a deeper understanding of machine learning principles. It was fun.
