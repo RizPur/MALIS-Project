@@ -6,7 +6,7 @@ Date: November 4, 2024
 ### 1.1 Overview
 In this project, we completed a binary classification task using linear regression based on iris dataset and further, completed a ternary classification task. The accuracy for Task 1 can be 100%, and for Task 2 can be up to 96%. 
 ### 1.2 ChatGPT Usage
-We used ChatGPT to accelarate our coding, complete and revise our code. We originally proposed a solution to the ternary classification problem and implemented it using ChatGPT.
+We used ChatGPT to accelarate our coding, complete and revise our code. We originally conceived of a solution to the ternary classification problem and used ChatGPT to help us write the model in Python.
 ### 1.3 Contribution
 Joel focused on the coding and project report for Task 1 while Qizhi focused on the coding and project report for Task 2.
 ## 2. Dataset Description and Analysis
@@ -19,7 +19,7 @@ To better handle the classification task with linear regression, we need to unde
 ### 2.1 Plot 4 Features in 2 Categories
  Considering the binary classifier in **Task 1**, here we list the scatterplots and histograms for 4 features in selected 2 categories:
 
-![Pairplot](/plots/binary/pairplot.png)
+![Pairplot](plots/binary/pairplot.png)
 
 
 Here's the definition for each pairplot grid:
@@ -40,7 +40,7 @@ Theoreticlly, either the `petal.length` or `petal.width` itself should be enough
 
 ### 2.2 Plot 4 Features in 3 Categories
 Considering the ternary classifier in **Task 2**, here we plot the 4 features in 3 categories with the same grid definition as above:
-![Pairplot](/plots/binary/pairplot_tri.png)
+![Pairplot](plots/binary/pairplot_tri.png)
 In this new condition, choosing only one feature to set up the model is not a good idea, because every feature overlaps with each other to some extent. But the `petal.length` and `petal.width` together show a beautiful linear relationship with more feasible boundaries to distinguish each other.
 
 Thus, in Task 2, we decide to use both `petal.length` and `petal.width` features to create our regression model.
@@ -58,9 +58,9 @@ In the end, the classification will be:
 
 We defined the Mean Squared Error (MSE) as the loss function to quantify how accurately the model predicts the target values. To optimize the model parameters (`w` and `b`), we implemented Gradient Descent, which minimizes the loss function by iteratively updating the parameters as follows:
 
-$$w=w−\alpha⋅\frac{∂w}{∂Loss}​$$
+$$w=w-\alpha⋅\frac{∂w}{∂Loss}​$$
 
-$$b=b−\alpha⋅\frac{∂b}{∂Loss}​$$ 
+$$b=b-\alpha⋅\frac{∂b}{∂Loss}​$$ 
 
 where $\alpha$ is the learning rate (defaulted to 0.01 arbituarly)
 
