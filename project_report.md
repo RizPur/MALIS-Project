@@ -7,6 +7,8 @@ Date: November 4, 2024
 In this project, we completed a binary classification task using linear regression based on iris dataset and further, completed a ternary classification task. The accuracy for task 1 can be 100%, and for task 2 can be up to 96%. 
 ### 1.2 ChatGPT Usage
 We used ChatGPT to accelarate our coding, complete and revise our code. We originally proposed a solution to the ternary classification problem and implemented it using ChatGPT.
+### 1.3 Contribution
+Joel does the coding and writing for the task 1. Qizhi does the coding and writing for task 2 and discussion.
 ## 2. Dataset Description and Analysis
 The Iris dataset consists of 150 samples, each representing a flower of one of three species: `Setosa`, `Versicolor`, and `Virginica`. The dataset contains 4 numerical features:`sepal.length`, `sepal.width`, `petal.length`, and `petal.width`, all of them are in centimeters.
 
