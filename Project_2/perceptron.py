@@ -61,7 +61,7 @@ class Perceptron:
             print(f"Model Reject. Retrain")
             flag += 1
             return self.train(X, y, epochs=100, flag = flag)
-        
+        return 1
         
 
     def predict(self, X_new):
@@ -75,3 +75,12 @@ class Perceptron:
         y_hat = np.where(linear_output >= 0, 1, -1)
         #print(self.weights)
         return y_hat
+    
+    def accuracy(self, y_pred, y):
+        '''
+        OUTPUT :
+        - accuracy: compare two outputs, calculate their accuracy
+        '''
+        val_accuracy = np.mean(y_pred == y)
+        print(f"Testing Accuracy: {val_accuracy * 100:.2f}%")
+        return val_accuracy
