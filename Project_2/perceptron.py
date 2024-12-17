@@ -84,3 +84,39 @@ class Perceptron:
         val_accuracy = np.mean(y_pred == y)
         print(f"Testing Accuracy: {val_accuracy * 100:.2f}%")
         return val_accuracy
+    
+    
+    def precision_recall_f1(self, y_pred, y):
+        '''
+        Compute precision, recall, and F1-score.
+        
+        We assume:
+        - Positive class: 1
+        - Negative class: -1
+        '''
+        # True Positives (TP): predicted 1, actual 1
+        TP = np.sum((y_pred == 1) & (y == 1))
+        
+        # False Positive (FP): predicted 1, actual -1
+        FP = np.sum((y_pred == 1) & (y == -1))
+        
+        # False Negatives (FN): predicted -1, actual 1
+        FN = np.sum((y_pred == -1) & (y == 1))
+        
+        # Precision: TP / (TP + FP), need to handle the case if TP+FP=0
+        precision = TP / (TP + FP) if (TP + FP) > 0 else 0.0
+        
+        # Recall: TP / (TP + FN), need to handle if TP+FN=0
+        recall = TP / (TP + FN) if (TP + FN) > 0 else 0.0
+        
+        # F1-score: 2*(precision*recall)/(precision+recall), handle if sum=0
+        if precision + recall == 0:
+            f1 = 0.0
+        else:
+            f1 = 2 * (precision * recall) / (precision + recall)
+        
+        print(f"Precision: {precision:.2f}")
+        print(f"Recall: {recall:.2f}")
+        print(f"F1-score: {f1:.2f}")
+        
+        return precision, recall, f1
