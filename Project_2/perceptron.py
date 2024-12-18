@@ -56,11 +56,15 @@ class Perceptron:
         
         y_val_pred = self.predict(X_val)
         val_accuracy = np.mean(y_val_pred == y_val)
+        val_pre, val_recall, val_f1 = self.precision_recall_f1(y_val_pred,y_val)
         print(f"Validation Accuracy: {val_accuracy * 100:.2f}%")
-        if val_accuracy < 0.8:
+        print(f"Validation precision: {val_pre * 100:.2f}%")
+        print(f"Validation recall: {val_recall * 100:.2f}%")
+        print(f"Validation f1_score: {val_f1 :.2f}")
+        if val_accuracy < 0.8 or val_pre < 0.75 or val_recall < 0.8 or val_f1 < 0.75:
             print(f"Model Reject. Retrain")
             flag += 1
-            return self.train(X, y, epochs=100, flag = flag)
+            return self.train(X, y, epochs, flag = flag)
         return 1
         
 
@@ -82,7 +86,11 @@ class Perceptron:
         - accuracy: compare two outputs, calculate their accuracy
         '''
         val_accuracy = np.mean(y_pred == y)
+        val_pre, val_recall, val_f1 = self.precision_recall_f1(y_pred,y)
         print(f"Testing Accuracy: {val_accuracy * 100:.2f}%")
+        print(f"Testing precision: {val_pre * 100:.2f}%")
+        print(f"Testing recall: {val_recall * 100:.2f}%")
+        print(f"Testing f1_score: {val_f1 :.2f}")
         return val_accuracy
     
     
@@ -115,8 +123,8 @@ class Perceptron:
         else:
             f1 = 2 * (precision * recall) / (precision + recall)
         
-        print(f"Precision: {precision:.2f}")
-        print(f"Recall: {recall:.2f}")
-        print(f"F1-score: {f1:.2f}")
+        #print(f"Precision: {precision:.2f}")
+        #print(f"Recall: {recall:.2f}")
+        #print(f"F1-score: {f1:.2f}")
         
         return precision, recall, f1
