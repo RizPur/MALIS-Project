@@ -24,7 +24,7 @@ class Perceptron:
         self.alpha = alpha
         
 
-    def train(self, X, y, epochs=100, flag = 0):
+    def train(self, X_train, X_val, y_train, y_val, epochs=100, flag = 0):
         '''
         INPUT :
         - X : is a 2D NxD numpy array containing the input features
@@ -36,11 +36,9 @@ class Perceptron:
             print("training failed")
             return 0
         # Initialize weights with zeros
-        n_samples, n_features = X.shape
-        self.weights = np.zeros(n_features)
-        self.bias = 0
-       
-        X_train, X_val, y_train, y_val = train_test_split(X, y, test_size=0.25, stratify=y, random_state=42)
+        n_samples, n_features = X_train.shape
+        self.weights = np.random.randn(n_features) #zeros(n_features)
+        self.bias = np.random.randn(1) #0
 
         # Perceptron training loop
         for _ in range(epochs):
@@ -61,10 +59,12 @@ class Perceptron:
         print(f"Validation precision: {val_pre * 100:.2f}%")
         print(f"Validation recall: {val_recall * 100:.2f}%")
         print(f"Validation f1_score: {val_f1 :.2f}")
-        if val_accuracy < 0.8 or val_pre < 0.75 or val_recall < 0.8 or val_f1 < 0.75:
+        ''' # no need to reject the training model in Adaboost
+        if val_accuracy < 0.8 or val_pre < 0.75 or val_recall < 0.8 or val_f1 < 0.7:
             print(f"Model Reject. Retrain")
             flag += 1
-            return self.train(X, y, epochs, flag = flag)
+            return self.train(X_train, X_val, y_train, y_val, epochs= epochs, flag = flag)
+            '''
         return 1
         
 
