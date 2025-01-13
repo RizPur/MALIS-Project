@@ -24,7 +24,7 @@ class Perceptron:
         self.alpha = alpha
         
 
-    def train(self, X_train, X_val, y_train, y_val, epochs=100, flag = 0):
+    def train(self, X_train, X_val, y_train, y_val, weight_samples, epochs=100, flag = 0):
         '''
         INPUT :
         - X : is a 2D NxD numpy array containing the input features
@@ -37,8 +37,8 @@ class Perceptron:
             return 0
         # Initialize weights with zeros
         n_samples, n_features = X_train.shape
-        self.weights = np.random.randn(n_features) #zeros(n_features)
-        self.bias = np.random.randn(1) #0
+        self.weights = np.zeros(n_features) #random.randn(n_features)
+        self.bias = 0#np.random.randn(1) 
 
         # Perceptron training loop
         for _ in range(epochs):
@@ -49,8 +49,8 @@ class Perceptron:
 
                 # Update weights and bias if prediction is incorrect
                 if y_pred != y_train[idx]:
-                    self.weights += self.alpha * y_train[idx] * x_i   # Here's the SGD expression of perceptron problems
-                    self.bias += self.alpha * y_train[idx]
+                    self.weights += self.alpha * weight_samples[idx] * y_train[idx] * x_i   # Here's the SGD expression of perceptron problems
+                    self.bias += self.alpha * weight_samples[idx] * y_train[idx]
         
         y_val_pred = self.predict(X_val)
         val_accuracy = np.mean(y_val_pred == y_val)
