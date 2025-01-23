@@ -14,3 +14,10 @@
 1. Compute weighted error of that round’s combined multi-class predictions on the training set.
 1. If error < 0.5, compute αtαt​. Otherwise skip.
 Update sample weights for misclassified samples.
+
+
+## Notes for Pan
+
+1. No global references to X_train, X_valid, y_train, or binary_y_train[k].
+1. Yes pass (X_train_fold, y_train_fold, X_val_fold, y_val_fold) into Perceptron_train(...) inside each fold.
+1. Inside Perceptron_train, we do the 0..9 classification for that fold. Return the combined predictions and error with respect to that fold’s training data.
